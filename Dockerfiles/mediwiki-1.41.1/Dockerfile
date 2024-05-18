@@ -11,6 +11,6 @@ RUN sed -i 's/Listen 80/Listen 8080/' /etc/httpd/conf/httpd.conf \
 RUN wget https://releases.wikimedia.org/mediawiki/1.41/mediawiki-1.41.1.tar.gz
 RUN tar -zxpvf mediawiki-1.41.1.tar.gz --strip-components=1 -C /var/www/html/
 RUN chgrp -R 0 /var/www/html/ /var/lib/php/ && chmod -R g=u /var/www/html/ /var/lib/php/
-EXPOSE 8090
+EXPOSE 8080
 USER 1001
 CMD php-fpm & httpd -D FOREGROUND
