@@ -1,5 +1,5 @@
 FROM registry.access.redhat.com/ubi8/ubi:8.1
-RUN yum --disableplugin=subscription-manager -y module enable php:7.3 \
+RUN yum --disableplugin=subscription-manager -y module enable php:7.4 \
   && yum --disableplugin=subscription-manager -y install httpd php \
   && yum --disableplugin=subscription-manager clean all
 RUN yum -y install wget php-mysqlnd php-zip php-devel php-gd php-mbstring php-curl php-xml php-pear php-bcmath php-json php-intl
