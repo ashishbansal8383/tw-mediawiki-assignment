@@ -43,8 +43,8 @@ helm install chartname /directory
  
 example > 
 ```
-helm install mediawiki helm-chart/mediawiki-chart
-helm install database helm-chart/mediawiki-mariadb-chart
+helm install mediawiki mediawiki-chart
+helm install database mediawiki-mariadb-chart
 ```
 The application will be served on the external ip provided by load balancer . In my case it was > http://localhost:8090. 
 The databse host will be available at database:3306. Set the db root password, username and db name from values file placed inside mediawiki-mariadb-chart . Use the same to configure mediawiki db details page .
