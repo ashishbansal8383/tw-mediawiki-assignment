@@ -56,3 +56,31 @@ At the end of configuartion , LocalSettings.php will be downloaded . The same fi
 Kubectl get pods -A -o wide
 Kubectl get pods -A -o wide
 ```
+## Automate deployment using ArgoCD. A great continuous delivery tool.
+
+1. Create a namespace for argocd
+```bash
+kubectl create namespace argocd
+```
+2. Apply ArgoCD manifest installation file from ArgoCD [github repository](https://github.com/argoproj/argo-cd/releases) 
+```bash
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.8.4/manifests/install.yaml
+```
+3. Verify the installation by getting all the objects in the ArgoCD namespace.
+```bash
+kubectl get all -n argocd
+```
+4. wait till all pods in that namespace running
+
+# Access ArgoCD UI
+1. we need to do a port forwarding from the argocd-server service
+```bash
+kubectl port-forward svc/argocd-server -n argocd 9080:443
+```
+2. now lets go to browser with http://localhost:9080
+3. retrieve password from secret in argocd namespace
+```bash
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+```
+4. the default login username is ```admin``` with the password we took above
+kubectl port-forward svc/argocd-server -n argocd 8080:443
